@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Report</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="sales.styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>Sales Report</h2>
+            <a href="index.html" class="btn">Back to Menu</a>
+        </div>
+
+        <div class="filter-controls">
+            <label for="monthSelect">Month:</label>
+            <select id="monthSelect"></select>
+
+            <label for="yearSelect">Year:</label>
+            <select id="yearSelect"></select>
+
+            <button id="viewReportBtn" class="btn">View Report</button>
+        </div>
+        <div id="topSellingItem" class="top-selling-item-container">
+            <p>Loading top selling item...</p>
+        </div>
+        <div id="salesReport" class="sales-report-container">
+            <p>Loading sales data...</p>
+        </div>
+        <div id="monthlySalesReport" class="monthly-sales-report-container">
+            <p>Loading monthly sales data...</p>
+        </div>
+    </div>
+    <script src="sales.js"></script>
+</body>
+</html>

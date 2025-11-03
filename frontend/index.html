@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>McDonald's Order System</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="banner">
+        <div class="banner-images">
+            <img src="https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?w=100&h=100&fit=crop" alt="Fries">
+            <img src="https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?w=100&h=100&fit=crop" alt="Ice Cream">
+            <img src="./f5.png" alt="Fried">
+            <img src="https://images.unsplash.com/photo-1551782450-17144efb9c50?w=100&h=100&fit=crop" alt="Donut">
+            <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?w=100&h=100&fit=crop" alt="Burger">
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="main-layout">
+            <div class="sidebar" id="sidebar"></div>
+
+            <div class="content">
+                <div class="header">
+                    <h2 id="categoryTitle">Desserts & Sides</h2>
+                    <div class="search-box">
+                        <span class="search-icon">🔍</span>
+                        <input type="text" id="searchInput" placeholder="Search items...">
+                    </div>
+                    <a href="history.html" class="history-btn">View History</a>
+                    <a href="sales.html" class="history-btn">Sales Report</a>
+                </div>
+
+                <div class="menu-grid" id="menuGrid"></div>
+            </div>
+
+            <div class="right-sidebar">
+                <div class="cart-section" id="cartSection" style="display: none;">
+                    <div class="cart-header">
+                        <span id="cartCount">0 Items in list</span>
+                        <span class="view-order-link" onclick="showInvoice()">View order list</span>
+                    </div>
+
+                    <div id="cartItems"></div>
+
+                    <div class="cart-actions">
+                        <button class="btn btn-cancel" onclick="clearCart()">Cancel Order</button>
+                        <button class="btn btn-submit" onclick="generateInvoice()">Add to order</button>
+                    </div>
+                </div>
+
+                <div class="empty-cart" id="emptyCart">
+                    🛒 Your cart is empty. Click on items to add!
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="invoice-overlay" id="invoiceOverlay">
+        <div class="invoice" id="invoice"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

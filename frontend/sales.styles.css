@@ -1,0 +1,164 @@
+.top-selling-item-container {
+    margin-bottom: 30px;
+    background-color: #FFFBEB; /* Light yellow background */
+    padding: 25px;
+    border-radius: 10px;
+    border: 1px solid #FDB913; /* McDonald's yellow border */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.top-selling-item-container h3 {
+    color: #DC2626; /* McDonald's Red */
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.top-selling-item-container p {
+    font-size: 18px;
+    color: #333;
+    line-height: 1.6;
+}
+
+.top-selling-item-container p strong {
+    color: #FDB913;
+}
+
+.filter-controls {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: #f0f2f5;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.filter-controls label {
+    font-weight: 600;
+    color: #333;
+}
+
+.filter-controls select {
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    background-color: #fff;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.filter-controls select:focus {
+    border-color: #FDB913;
+}
+
+.filter-controls .btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #FDB913;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.filter-controls .btn:hover {
+    background-color: #E5A50A;
+}
+
+.sales-report-container {
+    margin-top: 20px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.05);
+}
+
+.sales-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.sales-table th,
+.sales-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+.sales-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    color: #333;
+}
+
+.sales-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.sales-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+.monthly-sales-report-container {
+    margin-top: 30px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.05);
+}
+
+.monthly-sales-report-container h3 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 25px;
+    font-size: 26px;
+}
+
+.monthly-sales-card {
+    background-color: #f9f9f9;
+    border: 1px solid #eee;
+    border-left: 5px solid #DC2626; /* McDonald's Red */
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.monthly-sales-card h4 {
+    color: #DC2626;
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.monthly-sales-card p {
+    margin-bottom: 5px;
+    font-size: 16px;
+}
+
+.monthly-sales-card p strong {
+    color: #FDB913;
+}
+
+.monthly-sales-card h5 {
+    margin-top: 15px;
+    margin-bottom: 5px;
+    color: #555;
+    font-size: 15px;
+}
+
+.monthly-sales-card ul {
+    list-style-type: disc;
+    padding-left: 25px;
+}
+
+.monthly-sales-card li {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 3px;
+}
