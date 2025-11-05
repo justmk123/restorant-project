@@ -7,7 +7,7 @@ const app = express();
 // Middleware
 app.use(cors());
 app.use(express.json());
-app.use(express.static('public')); // Serve static files
+app.use(express.static('../frontend')); // Serve static files
 
 // MongoDB Connection
 mongoose.connect(process.env.MONGODB_URI, {
