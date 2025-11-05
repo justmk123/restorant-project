@@ -1,9 +1,11 @@
+const API_URL = 'http://localhost:3000';
+
 document.addEventListener('DOMContentLoaded', () => {
     fetchOrderHistory();
 });
 
 function fetchOrderHistory() {
-    const url = `/api/orders`;
+    const url = `${API_URL}/api/orders`;
 
     fetch(url)
         .then(response => response.json())

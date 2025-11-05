@@ -69,7 +69,9 @@ function renderMenu() {
 
 // Toggle item in cart
 function toggleItem(itemId) {
-    if (!cart[itemId]) {
+    if (cart[itemId]) {
+        cart[itemId]++;
+    } else {
         cart[itemId] = 1;
     }
     renderMenu();
@@ -154,6 +156,8 @@ function calculateTotal() {
     }, 0);
 }
 
+const API_URL = 'http://localhost:3000';
+
 // Generate invoice
 async function generateInvoice() {
     if (Object.keys(cart).length === 0) {
@@ -192,7 +196,7 @@ async function generateInvoice() {
     };
 
     try {
-        const response = await fetch('/api/orders', {
+        const response = await fetch(`${API_URL}/api/orders`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -207,7 +211,64 @@ async function generateInvoice() {
             cart = {}; // Clear cart on successful order
             renderMenu();
             renderCart();
-            closeInvoice(); // Close invoice overlay after successful order
+            
+            const invoiceHTML = `
+                <div class="invoice-header">
+                    <h1>McDonald's</h1>
+                    <p>123 Fast Food Street, City Center</p>
+                    <p>+60 3-1234 5678 | orders@mcdonalds.com</p>
+                </div>
+
+                <div class="invoice-info">
+                    <div>
+                        <strong>Invoice #:</strong> ${invoiceNumber}<br>
+                        <strong>Date:</strong> ${dateTime}
+                    </div>
+                    <div style="text-align: right;">
+                        <strong>Payment Method:</strong> Cash
+                    </div>
+                </div>
+
+                <table class="invoice-table">
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th style="text-align: right;">Qty</th>
+                            <th style="text-align: right;">Price</th>
+                            <th style="text-align: right;">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${orderItems.map(item => `
+                                <tr>
+                                    <td>${item.name}</td>
+                                    <td style="text-align: right;">${item.quantity}</td>
+                                    <td style="text-align: right;"><strong>RM</strong> ${item.unitPrice.toFixed(2)}</td>
+                                    <td style="text-align: right;"><strong>RM</strong> ${item.lineTotal.toFixed(2)}</td>
+                                </tr>
+                            `).join('')}
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="3" style="text-align: right; font-weight: bold;">Subtotal</td>
+                            <td style="text-align: right; font-weight: bold;"><strong>RM</strong> ${total.toFixed(2)}</td>
+                        </tr>
+                    </tfoot>
+                </table>
+
+                <div class="invoice-footer">
+                    <p>Thank you for your order!</p>
+                    <p>We hope to serve you again soon.</p>
+                </div>
+
+                <div class="invoice-actions">
+                    <button class="btn btn-submit" onclick="window.print()">🖨️ Print Invoice</button>
+                    <button class="btn btn-cancel" onclick="closeInvoice()">Back to Menu</button>
+                </div>
+            `;
+
+            document.getElementById('invoice').innerHTML = invoiceHTML;
+            document.getElementById('invoiceOverlay').classList.add('active');
         } else {
             alert('Failed to place order: ' + result.error);
         }
@@ -215,64 +276,6 @@ async function generateInvoice() {
         console.error('Error placing order:', error);
         alert('An error occurred while placing the order.');
     }
-
-    const invoiceHTML = `
-        <div class="invoice-header">
-            <h1>McDonald's</h1>
-            <p>123 Fast Food Street, City Center</p>
-            <p>+60 3-1234 5678 | orders@mcdonalds.com</p>
-        </div>
-
-        <div class="invoice-info">
-            <div>
-                <strong>Invoice #:</strong> ${invoiceNumber}<br>
-                <strong>Date:</strong> ${dateTime}
-            </div>
-            <div style="text-align: right;">
-                <strong>Payment Method:</strong> Cash
-            </div>
-        </div>
-
-        <table class="invoice-table">
-            <thead>
-                <tr>
-                    <th>Item</th>
-                    <th style="text-align: right;">Qty</th>
-                    <th style="text-align: right;">Price</th>
-                    <th style="text-align: right;">Total</th>
-                </tr>
-            </thead>
-            <tbody>
-                ${orderItems.map(item => `
-                        <tr>
-                            <td>${item.name}</td>
-                            <td style="text-align: right;">${item.quantity}</td>
-                            <td style="text-align: right;"><strong>RM</strong> ${item.unitPrice.toFixed(2)}</td>
-                            <td style="text-align: right;"><strong>RM</strong> ${item.lineTotal.toFixed(2)}</td>
-                        </tr>
-                    `).join('')}
-            </tbody>
-            <tfoot>
-                <tr>
-                    <td colspan="3" style="text-align: right; font-weight: bold;">Subtotal</td>
-                    <td style="text-align: right; font-weight: bold;"><strong>RM</strong> ${total.toFixed(2)}</td>
-                </tr>
-            </tfoot>
-        </table>
-
-        <div class="invoice-footer">
-            <p>Thank you for your order!</p>
-            <p>We hope to serve you again soon.</p>
-        </div>
-
-        <div class="invoice-actions">
-            <button class="btn btn-submit" onclick="window.print()">🖨️ Print Invoice</button>
-            <button class="btn btn-cancel" onclick="closeInvoice()">Back to Menu</button>
-        </div>
-    `;
-
-    document.getElementById('invoice').innerHTML = invoiceHTML;
-    document.getElementById('invoiceOverlay').classList.add('active');
 }
 // Show invoice
 function showInvoice() {

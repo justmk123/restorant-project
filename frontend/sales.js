@@ -1,3 +1,5 @@
+const API_URL = 'http://localhost:3000';
+
 document.addEventListener('DOMContentLoaded', () => {
     populateDropdowns();
     const currentMonth = new Date().getMonth() + 1;
@@ -60,7 +62,7 @@ async function updateSalesReport(month, year) {
 }
 
 async function fetchTopSellingItem(startDate, endDate) {
-    const url = `/api/sales/top-item?startDate=${startDate}&endDate=${endDate}`;
+    const url = `${API_URL}/api/sales/top-item?startDate=${startDate}&endDate=${endDate}`;
 
     try {
         const response = await fetch(url);
@@ -84,7 +86,7 @@ async function fetchTopSellingItem(startDate, endDate) {
 
 async function fetchSalesReport() {
     // This function now fetches all-time sales data
-    const url = `/api/sales/items`;
+    const url = `${API_URL}/api/sales/items`;
 
     try {
         const response = await fetch(url);
@@ -143,7 +145,7 @@ function renderSalesReport(salesData) {
 }
 
 async function fetchMonthlySalesReport(startDate, endDate) {
-    const url = `/api/sales/monthly?startDate=${startDate}&endDate=${endDate}`;
+    const url = `${API_URL}/api/sales/monthly?startDate=${startDate}&endDate=${endDate}`;
 
     try {
         const response = await fetch(url);

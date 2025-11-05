@@ -340,7 +340,22 @@ app.get('/api/sales/top-item', async (req, res) => {
 // 11. Get monthly sales data
 app.get('/api/sales/monthly', async (req, res) => {
     try {
+        const { startDate, endDate } = req.query;
+        let matchQuery = {};
+
+        if (startDate && endDate) {
+            matchQuery.createdAt = {
+                $gte: new Date(startDate),
+                $lte: new Date(endDate)
+            };
+        } else if (startDate) {
+            matchQuery.createdAt = { $gte: new Date(startDate) };
+        } else if (endDate) {
+            matchQuery.createdAt = { $lte: new Date(endDate) };
+        }
+
         const pipeline = [
+            { $match: matchQuery },
             { $group: {
                 _id: {
                     year: { $year: '$createdAt' },
